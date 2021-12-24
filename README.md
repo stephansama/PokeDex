@@ -1,6 +1,6 @@
 # PokeDex
 
-[Click Here](localhost:3000) to get started
+[Click Here](http://localhost:3000) to get started
 
 ### TO-DO:
 - Restful Routing
