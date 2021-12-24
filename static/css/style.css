@@ -1,0 +1,19 @@
+:root{
+    --main-color0:#fff;
+    --main-color1:#000;
+}
+
+body, html{
+    margin:0;
+    padding:0;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+a:hover{
+    color: red;
+    transition: all 0.3s;
+}
