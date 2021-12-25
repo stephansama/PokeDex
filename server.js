@@ -3,9 +3,15 @@ const express = require('express')
 const methodOverride = require('method-override')
 require('dotenv').config()
 
-//= Variables
+//= Global Variables
 const PORT = process.env.PORT || 3000
+
+//= Routes
 const pokerouter = require('./routes/pokeroutes.js')
+const userRouter = require('./routes/user_routes.js')
+
+//= Databases
+// const users = require('./models/users.js')
 const app = express()
 
 //= Load Middleware
@@ -13,12 +19,14 @@ app.use('/static', express.static('static'))
 app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/poke', pokerouter)
-
 //= Index
 app.get('/', (req, res) => {
-    res.redirect('/poke')
+    // console.log(new users.User({name: 't', password: 't', id: 0}))
+    res.render('index.ejs')
 })
+
+app.use('/poke/', pokerouter)
+app.use('/usr/', userRouter)
 
 //= New
 //= Delete
