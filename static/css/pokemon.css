@@ -1,0 +1,22 @@
+
+
+#pokedex{
+    height:100%;
+    padding:2rem;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+#pokecard{
+    padding:1.5rem;
+    font-family: monospace;
+    border:1px solid #000;
+    max-width: 250px;
+}
+
+#pokecard table{
+    
+}
