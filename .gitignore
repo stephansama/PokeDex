@@ -1,0 +1,4 @@
+# add database files to gitignore
+
+models/data
+request.rest
