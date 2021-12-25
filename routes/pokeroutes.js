@@ -1,26 +1,42 @@
 const express = require('express')
 
+// pokemon database
+const pokemon = require('../models/pokemon.js')
+
 const pokerouter = express.Router()
 
+pokerouter.use('/static/', express.static('static'))
+
 //= Index
-pokerouter.get('/', (req, res) => {res.render('index.ejs')})
+pokerouter.get('/', (req, res) => {
+    res.render('poke/all.ejs')
+})
 
 //= New
-pokerouter.get('/new', (req, res) => {})
+// No new route because the database is not mutable
+// pokerouter.get('/new', (req, res) => {})
 
 //= Delete
-pokerouter.delete('/:id', (req, res) => {})
+// No delete route because the database is not mutable
+// pokerouter.delete('/:id', (req, res) => {})
 
 //= Update
-pokerouter.put('/:id', (req, res) => {})
+// No update because the database is not mutable
+// pokerouter.put('/:id', (req, res) => {})
 
 //= Create
-pokerouter.post('/', (req, res) => {})
+// No create because the database is not mutable
+// pokerouter.post('/', (req, res) => {})
 
 //= Edit
-pokerouter.get('/:id/edit', (req, res) => {})
+// No edit because the database is not mutable
+// pokerouter.get('/:id/edit', (req, res) => {})
 
 //= Show
-pokerouter.get('/:id', (req, res) => {})
+pokerouter.get('/:id', (req, res) => {
+    res.render('poke/show.ejs', {
+        id: req.params.id
+    })
+})
 
 module.exports = pokerouter
