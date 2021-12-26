@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('components/header.ejs') %>
+    <%- include('../components/header.ejs') %>
 </head>
 <body>
-    Test Nigga
+    <%- include('../components/title.ejs') %>
+    <div id="pokedex">
+        <div id="subtitle"><%= data[id].name %> </div>
+        <div id="pokecard">
+            <img src="<%= data[id].img %>" alt="" srcset="">
+        </div>
+    </div>
+    <%- include('../components/footer.ejs') %>
 </body>
 </html>

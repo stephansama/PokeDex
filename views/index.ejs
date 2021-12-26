@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
     <%- include('components/header.ejs') %>
+    <title>PokéDex | Main Page</title>
 </head>
 <body>
     <%- include('components/title.ejs') %>
     <div id="pokedex">
-        <nav id="subtitle">
+        <nav id="subtitle" class="links">
             <ul id="links">
-                <li><a href="/usr/login">LOGIN</a></li>
-                <li><a href="/usr/register">REGISTER</a></li>
-                <li><a href="/poke">VIEW ALL</a></li>
+                <li><a href="/usr/login">Login</a></li>
+                <li><a href="/usr/register">Register</a></li>
+                <li><a href="/poke/all">View All</a></li>
             </ul>
         </nav>
     </div>
