@@ -1,0 +1,23 @@
+#input{
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+input[type="text"], input[type="password"], input[type="submit"]{
+    font-family: var(--second-font);
+    font-size: .5em;
+    padding: 1em;
+    outline: none;
+    border:none;
+}
+
+input[type="submit"]{
+    background-color: var(--main-color4);
+    color: var(--main-color2);
+    font-weight: bold;
+    border: 2px solid var(--main-color2);
+    cursor: pointer;
+}
