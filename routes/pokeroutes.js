@@ -8,8 +8,10 @@ const pokerouter = express.Router()
 pokerouter.use('/static/', express.static('static'))
 
 //= Index
-pokerouter.get('/', (req, res) => {
-    res.render('poke/all.ejs')
+pokerouter.get('/all', (req, res) => {
+    res.render('poke/all.ejs', { 
+        data: pokemon
+    })
 })
 
 //= New
@@ -35,6 +37,7 @@ pokerouter.get('/', (req, res) => {
 //= Show
 pokerouter.get('/:id', (req, res) => {
     res.render('poke/show.ejs', {
+        data: pokemon,
         id: req.params.id
     })
 })

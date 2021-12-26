@@ -8,6 +8,11 @@ const users = require('../models/users.js')
 // local variables
 const userRouter = express.Router()
 
+userRouter.use(setUser)
+function setUser(req, res, next) {
+    next()
+}
+
 
 //= Middleware
 //= Data formatting
@@ -17,6 +22,15 @@ userRouter.use('/static', express.static('static'))
 
 //= Authentication Layer
 function authenticated(req, res, next) {
+    console.log(req.body)
+    if(!req.body.id){
+        return res.status(403).send('Not authenticated')
+    }
+    currentUser = users.Users.find(user => user.id === req.body.id)
+    if(!currentUser){
+        return res.status(403).send('Not a user')
+    }
+    next()
 }
 
 
@@ -26,16 +40,27 @@ userRouter.get('/login', (req, res) => {
     res.render('./user/login.ejs')
 })
 
+userRouter.get('/:uid/dashboard', authenticated, (req, res) => {
+    // res.render('./user/dashboard.ejs', {
+    //     uid: req.params.uid
+    // })
+    console.log(req.users)
+    res.send('Test')
+})
+
 userRouter.post('/login', async (req, res) => {
     console.log(req.body)
     const user = users.Users.find(user => user.name === req.body.name)
     if(user === null || user === undefined)
         return res.status(400).send('Cannot find user')
     try{
-        if(await bcrypt.compare(req.body.password, user.password))
+        if(await bcrypt.compare(req.body.password, user.password)){
+            req.user = user
+            console.log(req.user)
             res.send('Success')
-        else
+        } else {
             res.send('Incorrect password')
+        }
     } catch {
         res.status(500).send('Internal server error')
     }

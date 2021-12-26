@@ -3,7 +3,7 @@ const Database = require('better-sqlite3');
 
 //= Local Variables
 const db_filename = './models/data/users.db'
-const db = new Database
+// const db = new Database
 
 
 //= Module
@@ -17,6 +17,9 @@ module.exports = {
             this.id = obj.id
         }
     },
+    statements:[
+        'INSERT INTO users (name, password)'
+    ],
     LoadUsers: function(){
     },
 }
