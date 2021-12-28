@@ -1,35 +1,49 @@
 //= Requirements
 const express = require('express')
+const session = require('express-session')
 const bcrypt = require('bcrypt')
 
+const Database = require('better-sqlite3')
+const SqliteStore = require('better-sqlite3-session-store')(session)
+
+const sessionDB = new Database('./models/data/users.db')
+
+
 //= Databases
-const users = require('../models/users.js')
+const users = require('../models/userDB.js')
 
 // local variables
 const userRouter = express.Router()
 
-userRouter.use(setUser)
-function setUser(req, res, next) {
-    next()
-}
-
-
 //= Middleware
-//= Data formatting
-userRouter.use(express.json())
+
+userRouter.use(session({
+    store: new SqliteStore({
+        client: sessionDB, 
+        expired: {
+          clear: true,
+          intervalMs: 900000 //ms = 15min
+        }}),
+    resave: false,
+    secret: 'secret',
+    saveUninitialized: false,
+    cookie: {maxAge: 1000*60*60*24},
+}))
+
 //= Load Static Files
 userRouter.use('/static', express.static('static'))
+//= Data formatting
+userRouter.use(express.json())
 
 //= Authentication Layer
 function authenticated(req, res, next) {
-    console.log(req.body)
-    if(!req.body.id){
-        return res.status(403).send('Not authenticated')
-    }
-    currentUser = users.Users.find(user => user.id === req.body.id)
-    if(!currentUser){
-        return res.status(403).send('Not a user')
-    }
+    // console.log(req.session)
+    console.log(req.session.user)
+    if(!req.session.user)
+        return res.render('./user/login.ejs', {message: 'Unauthenticated'})
+    // loosely compare id in the browser
+    if(req.session.user.ID != req.params.uid) 
+        return res.send('Not correct user')
     next()
 }
 
@@ -40,28 +54,33 @@ userRouter.get('/login', (req, res) => {
     res.render('./user/login.ejs')
 })
 
+userRouter.get('/logout', (req, res) => {
+    req.session.user = {}
+    res.send('Logout')
+})
+
 userRouter.get('/:uid/dashboard', authenticated, (req, res) => {
-    // res.render('./user/dashboard.ejs', {
-    //     uid: req.params.uid
-    // })
-    console.log(req.users)
-    res.send('Test')
+    res.send('Dashboard')
+})
+
+userRouter.get('/:uid/:pokeid', authenticated, (req, res)=>{
+    res.send('Pokemon ' + req.params.pokeid)
 })
 
 userRouter.post('/login', async (req, res) => {
-    console.log(req.body)
-    const user = users.Users.find(user => user.name === req.body.name)
+    const user = users.Users.find(user => user.NAME === req.body.name)
     if(user === null || user === undefined)
         return res.status(400).send('Cannot find user')
     try{
-        if(await bcrypt.compare(req.body.password, user.password)){
-            req.user = user
-            console.log(req.user)
+        if(await bcrypt.compare(req.body.password, user.PASSWORD)){
+            req.session.user = {NAME: user.NAME, ID: user.ID}
+            session.saveUninitialized = true
             res.send('Success')
         } else {
             res.send('Incorrect password')
         }
-    } catch {
+    } catch(err) {
+        console.log(err)
         res.status(500).send('Internal server error')
     }
 })
@@ -84,7 +103,7 @@ userRouter.put('/', (req, res) => {
 
 //= POST / CREATE USER
 userRouter.post('/', async (req, res) => {
-    if(users.Users.find(user => user.name === req.body.name))
+    if(users.Users.find(user => user.NAME === req.body.name))
         return res.status(400).send('User already exists')
     
     //= encrypt password
@@ -94,7 +113,14 @@ userRouter.post('/', async (req, res) => {
         return res.status(500).send('Internal Server Error')
     }
     
-    users.Users.push(new users.User(req.body))
+    // create a new user and add it to the database
+    users.Users.push(new users.User({
+        NAME: req.body.name,
+        PASSWORD: req.body.password
+    }, old=false))
+
+    users.AddUser(users.Users[users.Users.length - 1], users.UserDB)
+
     return res.status(201).send('User Created') // success
 })
 

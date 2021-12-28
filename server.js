@@ -10,8 +10,11 @@ const PORT = process.env.PORT || 3000
 const pokerouter = require('./routes/pokeroutes.js')
 const userRouter = require('./routes/user_routes.js')
 
+const userDB = require('./models/userDB.js')
+
+userDB.LoadUsers()
+
 //= Databases
-// const users = require('./models/users.js')
 const app = express()
 
 //= Load Middleware
