@@ -7,8 +7,8 @@ require('dotenv').config()
 const PORT = process.env.PORT || 3000
 
 //= Routes
-const pokerouter = require('./routes/pokeroutes.js')
-const userRouter = require('./routes/user_routes.js')
+const pokeRouter = require('./routes/pokeRouter.js')
+const userRouter = require('./routes/userRouter.js')
 
 const userDB = require('./models/userDB.js')
 
@@ -24,18 +24,19 @@ app.use(express.urlencoded({ extended: false }));
 
 //= Index
 app.get('/', (req, res) => {
-    // console.log(new users.User({name: 't', password: 't', id: 0}))
     res.render('index.ejs')
 })
 
-app.use('/poke/', pokerouter)
+app.use('/poke/', pokeRouter)
 app.use('/usr/', userRouter)
 
-//= New
-//= Delete
-//= Update
-//= Create
-//= Edit
-//= Show
+
+// Error Handling function
+
+app.get('/error', (req, res) => {
+    console.log(res)
+    res.render('error.ejs', {message:res.message})
+})
+
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`) )
