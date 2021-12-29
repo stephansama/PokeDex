@@ -5,6 +5,30 @@
     <title>PokéDex | Dashboard</title>
 </head>
 <body>
-    
+    <%- include('../components/title.ejs') %> 
+    <div id="pokedex">
+        <div id="pokemenu">
+            <ul>
+                <li><a href="/usr/<%=id%>/new">NEW Pokemon +</a></li>
+                <li><a href="/usr/<%=id%>/delete">Delete Pokemon</a></li>
+                <li><a href="/usr/<%=id%>/edit">Edit User</a></li>
+            </ul>
+        </div>
+        <div id="collection">
+            <!-- Load pokemon images -->
+            <div id="pkimages">
+                <% list.forEach(pokemon => { %>
+                    <div id="pkimage"></div>
+                <% }) %>
+            </div>
+            <!-- Load pokemon names -->
+            <div id="pknames">
+                <% list.forEach(pokemon => { %>
+                    <div id="pkname"></div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+    <%- include('../components/footer.ejs') %> 
 </body>
 </html>
