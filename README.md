@@ -8,9 +8,12 @@
 - **Node Modules**
     - [bcrypt](https://www.npmjs.com/package/bcrypt)
     - [better-sqlite3](https://www.npmjs.com/package/better-sqlite3)
+    - [better-sqlite3-session-store](https://github.com/TimDaub/better-sqlite3-session-store#readme)
     - [dotenv](https://www.npmjs.com/package/dotenv)
-    - [express](https://www.npmjs.com/package/express)
     - [ejs](https://www.npmjs.com/package/ejs)
+    - [express](https://www.npmjs.com/package/express)
+    - [express-session](https://github.com/expressjs/session)
+    - [file-system](https://www.npmjs.com/package/file-system)
     - [method-override](https://www.npmjs.com/package/method-override)
 - **Websites**
     - [Pokemon Colors](https://www.schemecolor.com/pokemon-colors.php)
