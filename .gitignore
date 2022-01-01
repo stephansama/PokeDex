@@ -1,4 +1,4 @@
 # add database files to gitignore
 
-models/data
+models/data/*.db
 request.rest

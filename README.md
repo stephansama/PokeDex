@@ -42,3 +42,4 @@ PokéDex is a simple web application that allows users to import from the first 
 
 ### TO-DO:
 - Add ability to delete users from webpage
+- Move User Database location to a variable
