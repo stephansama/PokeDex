@@ -1,0 +1,95 @@
+/* POKEMON CARD */
+
+#cardcontainer{
+    width:100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+#pokecard{
+    padding:0;
+    background-color:var(--main-color4);
+    color:white;
+    font-family: monospace;
+    max-width: 250px;
+    margin:1rem;
+    border-radius: .3rem;
+    overflow:hidden;
+}
+
+#pokecard .header{
+    overflow:hidden;
+    padding: var(--padding);
+    padding-bottom: 0;
+}
+
+#pokecard .header.img{
+    padding:0;
+}
+
+#pokecard .header > img{
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    /* overflow: hidden; */
+    object-fit: cover;
+    object-position: left top;
+    height: 100%;
+    max-height: 200px;
+    transition:transform .3s ease-in-out;
+}
+
+#pokecard:hover .header > img{
+    transform: scale(1.2);
+}
+
+#pokecard table{
+    margin: .2rem 0;
+    font-size: .5em;
+    width: 100%;
+    padding: 0;
+    background-color: var(--main-color3);
+    /* border:1px solid var(--main-color4); */
+    border:5px solid var(--main-color4);
+    border-spacing: 0;
+}
+
+#pokecard table tr td{
+    margin: 0;
+    padding: 5px;
+    border:1px solid var(--main-color4);
+    font-family: 'FiraCode', monospace;
+    /* offset-x | offset-y | blur-radius | color | inside */
+    /* box-shadow: 0px 5px 10px var(--main-color4) inset; */
+    /* border: 1px solid #000; */
+}
+
+#pokecard table tr td:first-child{
+    text-align: center;
+    /* font-weight: bold; */
+    /* font-family: 'Pokemon_Hollow'; */
+}
+#pokecard table tr td:last-child{
+    text-align: center;
+}   
+
+.pointer{
+    cursor:pointer;
+}
+
+#pokecard table tr td button {
+    font-family: inherit;
+    background:inherit;
+    font-size:larger;
+    cursor: pointer;
+    color:inherit;
+    border:none;
+    position: static;
+}
+
+#pokecard table tr td button:hover{
+    color:var(--main-color4);
+    text-shadow: var(--text-shadow);
+    transition: all .2s ease-in-out;
+}

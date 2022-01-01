@@ -8424,7 +8424,7 @@ module.exports = [
     }
   }, {
     id: "029",
-    name: "Nidoran?",
+    name: "Nidoran♀",
     img: "https://img.pokemondb.net/artwork/nidoran-f.jpg",
     type: [
       "Poison"
@@ -9501,7 +9501,7 @@ module.exports = [
     }
   }, {
     id: "032",
-    name: "Nidoran?",
+    name: "Nidoran♂",
     img: "https://img.pokemondb.net/artwork/nidoran-m.jpg",
     type: [
       "Poison"

@@ -21,3 +21,23 @@ input[type="submit"]{
     border: 2px solid var(--main-color2);
     cursor: pointer;
 }
+
+input[type="number"]{
+    width: 98.5%;
+    height: 3em;
+    font-size: .5em;
+    margin:0;
+    padding:0;
+}
+
+#infotable td:first-child{
+    text-align: right;
+}
+
+#infotable td:last-child{
+    padding:0;
+}
+
+#infotable td[colspan]{
+    text-align:center;
+}

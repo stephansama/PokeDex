@@ -4,7 +4,7 @@
 
 ### TECHNOLOGY USED
 - HTML5 / CSS3
-- [Google Charts](https://developers.google.com/chart/)
+- [Charts.JS](https://www.chartjs.org)
 - **Node Modules**
     - [bcrypt](https://www.npmjs.com/package/bcrypt)
     - [better-sqlite3](https://www.npmjs.com/package/better-sqlite3)
@@ -19,6 +19,8 @@
     - [Pokemon Colors](https://www.schemecolor.com/pokemon-colors.php)
     - [Text Shadow Generator](https://html-css-js.com/css/generator/text-shadow/)
     - [Box Shadow Generator](https://cssgenerator.org/box-shadow-css-generator.html)
+    - [CSS Gradient](https://cssgradient.io)
+    - [W3 Generator CSS Scrollbar](https://w3generator.com/scrollbar)
     - [FiraCode Font](https://github.com/tonsky/FiraCode)
     - [Pokemon Font](https://www.dafont.com/pokemon.font)
 

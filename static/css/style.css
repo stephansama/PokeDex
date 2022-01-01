@@ -16,12 +16,32 @@
 
 /* Global Variables */
 :root{
+    /* Pokemon Colors */
     --main-color0:#FF0000;
     --main-color1:#CC0000;
     --main-color2:#3B4CCA;
     --main-color3:#3d7dca;
     --main-color4:#FFDE00;
     --main-color5:#B3A125;
+    /* Pokemon Type Colors */
+    --type-electric:rgb(235,208,47);
+    --type-fighting:rgb(207,92,31);
+    --type-psychic:rgb(241,91,176);
+    --type-normal:rgb(155,161,166);
+    --type-poison:rgb(171,113,189);
+    --type-steel:rgb(148,174,175);
+    --type-fairy:rgb(255,176,230);
+    --type-ghost:rgb(112,86,153);
+    --type-water:rgb(61,135,188);
+    --type-grass:rgb(144,197,70);
+    --type-rock:rgb(152,129,30);
+    --type-fire:rgb(253,113,33);
+    --type-bug:rgb(103,149,55);
+    --type-ice:rgb(72,189,227);
+    --type-flying: linear-gradient(0deg, rgba(181,176,175,1) 0%, rgba(53,192,237,1) 100%);
+    --type-ground: linear-gradient(0deg, rgba(160,141,58,1) 0%, rgba(247,217,55,1) 100%);
+    --type-dragon: linear-gradient(0deg, rgba(239,99,77,1) 0%, rgba(73,154,200,1) 100%);
+
     --main-font: 'Pokemon_Solid', cursive;
     --second-font: 'FiraCode', monospace;
     --transition-time: .75s;
@@ -31,6 +51,20 @@
         -3px 2px 0px var(--main-color2),
         -2px 1px 0px var(--main-color2),
         -1px 0px 0px var(--main-color2);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background: var(--main-color4);
+}
+::-webkit-scrollbar-track{
+    background: var(--main-color1);
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 30px 1px var(--main-color1);
 }
 
 body, html{
@@ -47,6 +81,7 @@ body, html{
     font-variant-ligatures: common-ligatures; 
 }
 
+
 a{
     text-decoration:none;
     color:inherit;
@@ -54,10 +89,11 @@ a{
 
 #title{
     /* padding-top: 1em; */
-    margin-bottom: 1em;
-    display:flex;
-    justify-content:center;
-    color:var(--main-color4);
+    display: flex;
+    margin-bottom: 1em; 
+    letter-spacing: 4px;
+    justify-content: center;
+    color: var(--main-color4);
     text-shadow: var(--text-shadow);
     background-color: var(--main-color0);
     box-shadow: 0  10px 60px 1px rgba(0,0,0,0.29);
@@ -66,10 +102,141 @@ a{
 }
 
 #subtitle{
+    letter-spacing: 5px;
     padding:10px;
     font-size: 1.2em;
     display: flex;
     justify-content: center;
-    color:var(--main-color4);
+    color: var(--main-color4);
     text-shadow: var(--text-shadow);
+}
+
+#backbutton{
+    display: inline-block;
+    font-family: 'FiraCode', monospace;
+    transition: text-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#backbutton:hover{
+    text-shadow: var(--text-shadow);
+    color: var(--main-color4);
+}
+
+#types {
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+#types span{
+    font-family: 'FiraCode', monospace;
+    font-size: .4em;
+    display:inline-block;
+    text-shadow: none;
+    letter-spacing: 0px;
+    padding:10px;
+    --padding: 10px;
+}
+
+.Grass::before{
+    content:'Grass';
+    padding:var(--padding);
+    background-color: var(--type-grass);
+}
+
+.Electric::before{
+    content:'Electric';
+    padding:var(--padding);
+    background-color: var(--type-electric);
+}
+
+.Fire::before{
+    content:'Fire';
+    padding:var(--padding);
+    background-color: var(--type-fire);
+}
+
+.Water::before{
+    content:'Water';
+    padding:var(--padding);
+    background-color: var(--type-water);
+}
+
+.Psychic::before{
+    content:'Psychic';
+    padding:var(--padding);
+    background-color: var(--type-psychic);
+}
+
+.Bug::before{
+    content:'Bug';
+    padding:var(--padding);
+    background-color: var(--type-bug);
+}
+
+.Fairy::before{
+    content:'Fairy';
+    padding:var(--padding);
+    background-color: var(--type-fairy);
+}
+
+.Normal::before{
+    content:'Normal';
+    padding:var(--padding);
+    background-color: var(--type-normal);
+}
+
+.Ice::before{
+    content:'Ice';
+    padding:var(--padding);
+    background-color: var(--type-ice);
+}
+
+.Poison::before{
+    content:'Poison';
+    padding:var(--padding);
+    background-color: var(--type-poison);
+}
+
+.Ghost::before{
+    content:'Ghost';
+    padding:var(--padding);
+    background-color: var(--type-ghost);
+}
+
+.Fighting::before{
+    content:'Fighting';
+    padding:var(--padding);
+    background-color: var(--type-fighting);
+}
+
+.Rock::before{
+    content:'Rock';
+    padding:var(--padding);
+    background-color: var(--type-rock);
+}
+
+.Steel::before{
+    content:'Steel';
+    padding:var(--padding);
+    background-color: var(--type-steel);
+}
+
+.Dragon::before{
+    content:'Dragon';
+    padding:var(--padding);
+    background: var(--type-dragon);
+}
+
+.Ground::before{
+    content:'Ground';
+    padding:var(--padding);
+    background:var(--type-ground);
+}
+
+.Flying::before{
+    content:'Flying';
+    padding:var(--padding);
+    background:var(--type-flying);
 }

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <%- include('../components/header.ejs') %> 
+    <link rel="stylesheet" href="/static/css/card.css" type="text/css">
     <title>PokéDex | Show All</title>
 </head>
 <body>
@@ -9,7 +10,7 @@
     <div id="pokedex">
         <div id="cardcontainer">
             <% data.forEach(elem => { %>
-                <div id="pokecard">
+                <div id="pokecard" class="pointer">
                     <div class="header img">
                         <img src="<%= elem.img %>" alt="<%= elem.name %>">
                     </div>
@@ -24,24 +25,12 @@
                         </tr>
                         <tr>
                             <td>TYPE 1</td>
-                            <td><%= elem.type[0] %></td>
+                            <td class="<%=elem.type[0]%>"></td>
                         </tr>
                         <tr>
                             <td>TYPE 2</td>
-                            <td><%= elem.type[1] ? elem.type[1] : '----' %></td>
+                            <td class="<%=elem.type[1]%>"><%= !elem.type[1] ? '----' : '' %></td>
                         </tr>
-                        <!-- <%# elem.type.forEach(type => { %>
-                            <tr>
-                                <td>TYPE</td>
-                                <td><%#= type %></td>
-                            </tr>
-                        <%# }) %>  -->
-                        <!-- <%# Object.keys(elem).forEach(key => { %>
-                            <tr>
-                                <td><%#= key.toUpperCase() %></td>
-                                <td><%#= elem[key] %> </td>
-                            </tr>
-                        <%# }) %>  -->
                     </table>
                 </div>
             <% }) %>

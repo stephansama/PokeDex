@@ -11,6 +11,7 @@ footer{
     background-color: var(--main-color0);
     color: var(--main-color4);
     text-shadow: var(--text-shadow);
+    letter-spacing:4px;
     box-shadow: 0 -10px 60px 1px rgba(0,0,0,0.29);
     -webkit-box-shadow: 0 -10px 60px 1px rgba(0,0,0,0.29);
     -moz-box-shadow: 0 -10px 60px 1px rgba(0,0,0,0.29);

@@ -1,1 +1,49 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../components/header.ejs') %>
+    <link rel="stylesheet" href="/static/css/card.css" type="text/css">
+    <title>PokéDex | Add new pokemon...</title>
+</head>
+<body>
+    <%- include('../../components/title.ejs') %> 
+    <div id="pokedex">
+        <%- include('../../components/backbutton.ejs') %>
+        <div id="cardcontainer">
+            <% list.forEach(elem => { %>
+                <div id="pokecard">
+                    <div class="header img">
+                        <img src="<%= elem.img %>" alt="<%= elem.name %>">
+                    </div>
+                    <table>
+                        <tr>
+                            <td>ID</td>
+                            <td>#<%= elem.id %></td>
+                        </tr>
+                        <tr>
+                            <td>NAME</td>
+                            <td><%= elem.name %></td>
+                        </tr>
+                        <tr>
+                            <td>TYPE 1</td>
+                            <td class="<%=elem.type[0]%>"></td>
+                        </tr>
+                        <tr>
+                            <td>TYPE 2</td>
+                            <td class="<%=elem.type[1] %> "><%= !elem.type[1] ? '----' : '' %></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <form action="/usr/<%=user.ID%>/<%=parseInt(elem.id)%>/" method="post">
+                                    <button type="submit">ADD POKEMON</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <%- include('../../components/footer.ejs') %> 
+</body>
+</html>

@@ -1,1 +1,92 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../components/header.ejs') %> 
+    <link rel="stylesheet" href="/static/css/fields.css">
+    <link rel="stylesheet" href="/static/css/show.css">
+    <title>PokéDex | <%=pokemon.NAME %></title>
+</head>
+<body>
+    <%- include('../../components/title.ejs') %> 
+    <div id="pokedex">
+        <nav>
+            <a id="backbutton" href='/usr/<%=id %>/<%=pokemon.POKEID %>'><-</a>
+            <div id="subtitle">#<%=pokemon.POKEID %> <%=pokemon.NAME %></div>
+        </nav>
+        <div id="showtitle">
+            <div id="showimage">
+                <img src="<%= pokemon.IMGURL%>" alt="<%=pokemon.NAME%>">
+            </div>
+        </div>
+        <div id="input">
+            <form action="/usr/<%=id %>/<%=pokemon.POKEID %>?_method=PUT" method="POST">
+                <table id="infotable">
+                    <tr>
+                        <td>NAME</td>
+                        <td>
+                            <input type="text" name="name" placeholder="<%=pokemon.NAME %>" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>TYPE 1</td>
+                        <td>
+                            <input type="text" name="type1" placeholder="<%=pokemon.TYPE[0] %>" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>TYPE 2</td>
+                        <td>
+                            <input type="text" name="type2" placeholder="<%=pokemon.TYPE[1] %>" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">STATS</td>
+                    </tr>
+                    <tr>
+                        <td>HP</td>
+                        <td>
+                            <input type="number" name="hp" placeholder="<%=pokemon.STATS.HP %>" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ATK</td>
+                        <td>
+                            <input type="number" name="atk" placeholder="<%=pokemon.STATS.ATK %>" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DEF</td>
+                        <td>
+                            <input type="number" name="def" placeholder="<%=pokemon.STATS.DEF %>" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SPATK</td>
+                        <td>
+                            <input type="number" name="spatk" placeholder="<%=pokemon.STATS.SPATK %>" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SPDEF</td>
+                        <td>
+                            <input type="number" name="spdef" placeholder="<%=pokemon.STATS.SPDEF %>" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SPEED</td>
+                        <td>
+                            <input type="number" name="speed" placeholder="<%=pokemon.STATS.SPEED %>" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="APPLY">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <%- include('../../components/footer.ejs') %> 
+</body>
+</html>

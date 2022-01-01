@@ -1,0 +1,57 @@
+#showtitle{
+    display:flex;
+    width:100%;
+    align-items:center;
+    justify-content:space-evenly;
+}
+
+#showtitle a {
+    align-content: center;
+    font-family: 'FiraCode', monospace;
+    transition: text-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#showtitle > a:hover{
+    color:var(--main-color4);
+    text-shadow: var(--text-shadow);
+}
+
+#pokeinfo{
+    display:flex;
+    align-items:center;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+#pokeinfo #showimage{
+    width:30%;
+}
+#right{
+    margin-left: 100px;
+    display: flex;
+    flex-flow:column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+table{
+    padding-bottom:100px;
+    font-family: 'FiraCode', monospace;
+    margin:0;
+}
+
+table td{
+    border:5px solid var(--main-color4);
+    background-color: var(--main-color2);
+    color:white;
+    padding:0 25px;
+}
+
+canvas{
+    width: 40vw;
+    background:white;
+    padding:15px;
+    border:5px solid var(--main-color4);
+    box-shadow: 0 0 5px var(--main-color3);
+}
