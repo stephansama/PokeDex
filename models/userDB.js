@@ -13,6 +13,25 @@ const USER_SQL = process.env.USER_SQL || ROOT + 'sql/user.sql'
 
 //= Module
 module.exports = {
+    PokemonTypes: [
+        'electric',
+        'fighting',
+        'psychic',
+        'normal',
+        'poison',
+        'steel',
+        'fairy',
+        'ghost',
+        'water',
+        'grass',
+        'rock',
+        'fire',
+        'bug',
+        'ice',
+        'flying',
+        'ground',
+        'dragon',
+    ],
     //== Pokemon Functions
     Pokemon: class Pokemon{
         constructor(obj, LastID=null) {

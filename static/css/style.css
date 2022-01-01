@@ -111,13 +111,15 @@ a{
     text-shadow: var(--text-shadow);
 }
 
-#backbutton{
+#link{
     display: inline-block;
+    color: var(--main-color2);
+    text-shadow: -1px 1px 0 var(--main-color4);
     font-family: 'FiraCode', monospace;
     transition: text-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-#backbutton:hover{
+#link:hover{
     text-shadow: var(--text-shadow);
     color: var(--main-color4);
 }
@@ -146,6 +148,7 @@ a{
 }
 
 .Electric::before{
+    color:black;
     content:'Electric';
     padding:var(--padding);
     background-color: var(--type-electric);

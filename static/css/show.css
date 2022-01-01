@@ -25,8 +25,9 @@
 }
 
 #pokeinfo #showimage{
-    width:30%;
+    width:25%;
 }
+
 #right{
     margin-left: 100px;
     display: flex;
@@ -39,11 +40,12 @@ table{
     padding-bottom:100px;
     font-family: 'FiraCode', monospace;
     margin:0;
+    border-spacing: 0;
 }
 
 table td{
     border:5px solid var(--main-color4);
-    background-color: var(--main-color2);
+    background-color: var(--main-color3);
     color:white;
     padding:0 25px;
 }

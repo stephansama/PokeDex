@@ -3,7 +3,6 @@
 <head>
     <%- include('../components/header.ejs') %>
     <link rel="stylesheet" href="/static/css/dashboard.css" type="text/css"">
-    <script src="/static/js/carousel.js" defer></script>
     <title>PokéDex | Dashboard</title>
 </head>
 <body>
@@ -11,8 +10,8 @@
     <div id="pokedex">
         <div id="pokemenu">
             <ul>
-                <li><a href="/usr/<%=id%>/new">NEW+</a></li>
-                <li><a href="/usr/<%=id%>/edit"><%=user.NAME.toUpperCase() %></a></li>
+                <li><a id="link" href="/usr/<%=id%>/new">NEW+</a></li>
+                <li><a id="link" href="/usr/<%=id%>/edit"><%=user.NAME.toUpperCase() %></a></li>
             </ul>
         </div>
         <div id="collection">
@@ -26,30 +25,46 @@
                                 <img src="<%=pokemon.IMGURL%>" alt="<%=pokemon.NAME%>">
                             </div>
                         </div>
-                    <% }) %>
-                </div>
-                <button class="carousel next">ꜜ</button>
-            </div>
-            <!-- Load pokemon names -->
-            <div id="pknames">
-                <% list.forEach((pokemon, idx) => { %>
-                    <div id="pkname">
-                        <form action="/usr/<%=id %>/<%=pokemon.POKEID %>?_method=DELETE" method="POST">
-                            <button type="submit">X</button>
-                        </form>
-                        <button onclick="changeSelectClass(parseInt(`<%=idx%>`))"><img src="/static/icons/android-chrome-512x512.png"></button>
-                        <a href="/usr/<%=id %>/<%=pokemon.POKEID %>">
-                        #<%=pokemon.POKEID %> <%=pokemon.NAME %>
-                        </a>
-                        <div id="types">
-                            <span class="<%=pokemon.TYPE[0] %>"></span>
-                            <span class="<%=pokemon.TYPE[1] %>"></span>
-                        </div>
+                        <% }) %>
                     </div>
-                <% }) %>
+                    <button class="carousel next">ꜜ</button>
+                </div>
+                <!-- Load pokemon names -->
+                <% let urls = [] %> 
+                <div id="pknames">
+                    <% list.forEach((pokemon, idx) => { %>
+                        <div id="pkname">
+                            <form action="/usr/<%=id %>/<%=pokemon.POKEID %>?_method=DELETE" method="POST">
+                                <button type="submit">X</button>
+                            </form>
+                            <button onclick="changeSelectClass(parseInt(`<%=idx%>`))"><img src="/static/icons/android-chrome-512x512.png"></button>
+                            <% let url = `/usr/${id}/${pokemon.POKEID}` %>
+                            <% urls.push(url) %> 
+                            <a href="<%=url %>">
+                                #<%=pokemon.POKEID %> <%=pokemon.NAME %>
+                            </a>
+                            <div id="types">
+                                <span class="<%=pokemon.TYPE[0] %>"></span>
+                                <span class="<%=pokemon.TYPE[1] %>"></span>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <%- include('../components/footer.ejs') %> 
-</body>
+            <%- include('../components/footer.ejs') %> 
+    </body>
+    <script src="/static/js/carousel.js"></script>
+    <% urls.forEach(url => { %>
+        <script>
+            addLink(`<%= url %>`)
+        </script>
+    <% }) %>
+    <script>
+        document.querySelectorAll('#showimage').forEach(elem=>{
+            elem.addEventListener('click',()=>{
+                visitLink()
+            })
+        })
+    </script>
 </html>

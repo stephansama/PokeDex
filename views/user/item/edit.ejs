@@ -9,34 +9,38 @@
 <body>
     <%- include('../../components/title.ejs') %> 
     <div id="pokedex">
-        <nav>
-            <a id="backbutton" href='/usr/<%=id %>/<%=pokemon.POKEID %>'><-</a>
+        <nav id='showtitle'>
+            <a id="link" href='/usr/<%=id %>/<%=pokemon.POKEID %>'><-</a>
             <div id="subtitle">#<%=pokemon.POKEID %> <%=pokemon.NAME %></div>
+            <div id="server">ID: <%=pokemon.ID %> </div>
         </nav>
         <div id="showtitle">
             <div id="showimage">
                 <img src="<%= pokemon.IMGURL%>" alt="<%=pokemon.NAME%>">
             </div>
         </div>
+        <% if(locals.msg){ %>
+            <div id="error"><%= locals.msg %></div>
+        <% } %>
         <div id="input">
             <form action="/usr/<%=id %>/<%=pokemon.POKEID %>?_method=PUT" method="POST">
                 <table id="infotable">
                     <tr>
                         <td>NAME</td>
                         <td>
-                            <input type="text" name="name" placeholder="<%=pokemon.NAME %>" id="">
+                            <input type="text" name="name" placeholder="<%=pokemon.NAME %>" value="<%=locals.body.name %>">
                         </td>
                     </tr>
                     <tr>
                         <td>TYPE 1</td>
                         <td>
-                            <input type="text" name="type1" placeholder="<%=pokemon.TYPE[0] %>" id="">
+                            <input type="text" name="type1" placeholder="<%=pokemon.TYPE[0] %>" value="<%=locals.body.type1 %>" id="">
                         </td>
                     </tr>
                     <tr>
                         <td>TYPE 2</td>
                         <td>
-                            <input type="text" name="type2" placeholder="<%=pokemon.TYPE[1] %>" id="">
+                            <input type="text" name="type2" placeholder="<%=pokemon.TYPE[1] %>" value="<%=locals.body.type2 %>" id="">
                         </td>
                     </tr>
                     <tr>
@@ -45,37 +49,37 @@
                     <tr>
                         <td>HP</td>
                         <td>
-                            <input type="number" name="hp" placeholder="<%=pokemon.STATS.HP %>" id="">
+                            <input type="number" name="hp" placeholder="<%=pokemon.STATS.HP %>" value="<%=locals.body.hp %>" id="">
                         </td>
                     </tr>
                     <tr>
                         <td>ATK</td>
                         <td>
-                            <input type="number" name="atk" placeholder="<%=pokemon.STATS.ATK %>" id="">
+                            <input type="number" name="atk" placeholder="<%=pokemon.STATS.ATK %>" value="<%=locals.body.atk %>" id="">
                         </td>
                     </tr>
                     <tr>
                         <td>DEF</td>
                         <td>
-                            <input type="number" name="def" placeholder="<%=pokemon.STATS.DEF %>" id="">
+                            <input type="number" name="def" placeholder="<%=pokemon.STATS.DEF %>" value="<%=locals.body.def %>" id="">
                         </td>
                     </tr>
                     <tr>
                         <td>SPATK</td>
                         <td>
-                            <input type="number" name="spatk" placeholder="<%=pokemon.STATS.SPATK %>" id="">
+                            <input type="number" name="spatk" placeholder="<%=pokemon.STATS.SPATK %>" value="<%=locals.body.spatk %>" id="">
                         </td>
                     </tr>
                     <tr>
                         <td>SPDEF</td>
                         <td>
-                            <input type="number" name="spdef" placeholder="<%=pokemon.STATS.SPDEF %>" id="">
+                            <input type="number" name="spdef" placeholder="<%=pokemon.STATS.SPDEF %>" value="<%=locals.body.spdef %>" id="">
                         </td>
                     </tr>
                     <tr>
                         <td>SPEED</td>
                         <td>
-                            <input type="number" name="speed" placeholder="<%=pokemon.STATS.SPEED %>" id="">
+                            <input type="number" name="speed" placeholder="<%=pokemon.STATS.SPEED %>" value="<%=locals.body.speed %>" id="">
                         </td>
                     </tr>
                     <tr>

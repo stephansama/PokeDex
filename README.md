@@ -2,7 +2,18 @@
 
 [Click Here](http://localhost:3000) to get started
 
-### TECHNOLOGY USED
+### Screenshots
+![Screenshot 1](./static/assets/screen1.png)
+![Screenshot 2](./static/assets/screen2.png)
+![Screenshot 3](./static/assets/screen3.png)
+### VALID KEYS
+- User Authenticated Pages
+    - Backspace - go back a page
+- Dashboard
+    - UP / DOWN
+    - Enter
+
+### TECHNOLOGIES USED
 - HTML5 / CSS3
 - [Charts.JS](https://www.chartjs.org)
 - **Node Modules**
@@ -25,7 +36,4 @@
     - [Pokemon Font](https://www.dafont.com/pokemon.font)
 
 ### TO-DO:
-- Restful Routing
-- Mutable Database
-- Image Carousel
-- Sounds within the webpage
+- 

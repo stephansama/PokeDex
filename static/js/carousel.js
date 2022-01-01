@@ -8,6 +8,7 @@ let audio = new Audio('/static/sounds/click.mp3');
 let selected = 0
 let time = 200
 let init = false
+let globalLinks = []
 
 // EVENT Listeners
 buttons.forEach(button=>{
@@ -17,14 +18,34 @@ buttons.forEach(button=>{
     })
 })
 
+
 // allow for using the keyboard
 document.onkeydown = (k) => {
     if(k.code === 'ArrowDown'){ 
         changeClass(updateSelected(1))
     } else if(k.code === 'ArrowUp') {
         changeClass(updateSelected(-1))
-    } // else if(k.code === 'Enter') { }
+    } else if(k.code === 'Enter') {
+        visitLink()
+    }
     setTimeout(() => {}, time)
+}
+
+function addLink(list){
+    globalLinks.push(list)
+}
+
+function visitLink(){
+    let t = 0
+    imgs.forEach((img, idx) => {
+        if(img.className === 'show') {
+            t = idx
+        }
+    })
+    t = parseInt(t)
+    console.log(t)
+    console.log(globalLinks[t])
+    window.location.href = globalLinks[t]
 }
 
 function updateSelected(offset) {

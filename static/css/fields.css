@@ -23,11 +23,16 @@ input[type="submit"]{
 }
 
 input[type="number"]{
-    width: 98.5%;
+    width: 98.2%;
     height: 3em;
     font-size: .5em;
     margin:0;
     padding:0;
+    text-align: center;
+}
+
+#infotable {
+    border-spacing: 0;
 }
 
 #infotable td:first-child{
@@ -40,4 +45,33 @@ input[type="number"]{
 
 #infotable td[colspan]{
     text-align:center;
+}
+
+#infotable td[colspan] > input{
+    width:100%;
+    transition: background .3s ease-in-out, color .3s ease-in-out, text-shadow .3s ease-in-out;
+}
+
+#infotable td[colspan] > input[type="submit"]:hover{
+    background:var(--main-color4);
+    color: var(--main-color4);
+    text-shadow: var(--text-shadow);
+}
+
+#server{
+    font-family: 'FiraCode', monospace;
+    font-weight: bold;
+    font-size:.4em;
+}
+
+#error{
+    margin-top:40px;
+    padding:10px;
+    font-family: 'FiraCode', monospace;
+    width:fit-content;
+    align-self: center;
+    column-span: all;
+    border:5px solid var(--main-color4);
+    background-color: white;
+    color:var(--main-color1);
 }

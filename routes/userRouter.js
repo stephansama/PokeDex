@@ -145,7 +145,9 @@ userRouter.get('/:uid/:pokeid/edit', authenticated, (req, res) => {
     res.render('./user/item/edit.ejs', {
         pokemon: userDB.Users[req.params.uid - 1].findPOKEMON(req.params.pokeid),
         user: userDB.Users[req.params.uid - 1],
-        id: req.params.uid
+        id: req.params.uid,
+        body: {},
+        msg: ''
     })
 })
 
@@ -223,6 +225,24 @@ userRouter.post('/:uid/:pokeid', authenticated, (req, res)=>{
 //= PUT Route
 //================================================================
 userRouter.put('/:uid/:pokeid', (req, res) => {
+    Object.keys(req.body).forEach(key => {
+        if(key.includes('type')){
+            if(!userDB.PokemonTypes.includes(req.body[key])){
+
+            }
+        }
+        if(!req.body[key]){
+            res.render('./user/item/edit.ejs', {
+                pokemon: userDB.Users[req.params.uid - 1].findPOKEMON(req.params.pokeid),
+                user: userDB.Users[req.params.uid - 1],
+                id: req.params.uid,
+                body: req.body,
+                msg: 'Need to input all fields'
+            })
+        }
+    })
+    // update user pokemon
+    res.redirect(`/usr/${req.params.uid}/${req.params.pokeid}`)
 })
 
 
