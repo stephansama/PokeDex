@@ -39,6 +39,12 @@
 </body>
 <script src="/static/js/charts.js"></script>
 <script>
+    document.onkeydown = (k) =>{
+        if(k.code === 'Backspace'){
+            window.location.href = '/usr/<%=id %>/dashboard'
+        }
+    }
+
     createChart({
         HP: parseInt(`<%=pokemon.STATS.HP%>`),
         ATK: parseInt(`<%=pokemon.STATS.ATK%>`),

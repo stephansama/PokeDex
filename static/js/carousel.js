@@ -28,7 +28,6 @@ document.onkeydown = (k) => {
     } else if(k.code === 'Enter') {
         visitLink()
     }
-    setTimeout(() => {}, time)
 }
 
 function addLink(list){

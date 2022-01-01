@@ -210,13 +210,11 @@ userRouter.post('/:uid/:pokeid', authenticated, (req, res)=>{
         return res.status(400).send('Pokemon already exists in user database')
     }
     // add to live list and DB
-    let t
-    if(userDB.Users[uid].POKEMON.length > 0){
-        t = userDB.Users[uid].POKEMON[userDB.Users[uid].POKEMON.length - 1].ID
-    }else {
-        t = 0
-    }
-    userDB.Users[uid].addPokemon(pkSelected, t)
+    // index is
+    let index = userDB.Users[uid].POKEMON.length > 0 ?
+        userDB.Users[uid].POKEMON[userDB.Users[uid].POKEMON.length - 1].ID : 0
+    
+    userDB.Users[uid].addPokemon(pkSelected, index)
     res.status(200).redirect(`/usr/${req.params.uid}/dashboard`)
 })
 
@@ -224,25 +222,51 @@ userRouter.post('/:uid/:pokeid', authenticated, (req, res)=>{
 //================================================================
 //= PUT Route
 //================================================================
-userRouter.put('/:uid/:pokeid', (req, res) => {
-    Object.keys(req.body).forEach(key => {
-        if(key.includes('type')){
-            if(!userDB.PokemonTypes.includes(req.body[key])){
-
+userRouter.put('/:uid/:pokeid', (req, res, next) => {
+    let chosenPokemon = userDB.Users[req.params.uid - 1].findPOKEMON(req.params.pokeid)
+    Object.keys(req.body).forEach(key =>{
+        // if the type key does not exist in the type list redirect to page
+        if(key.includes('type') && req.body[key]){
+            if(!userDB.PokemonTypes.includes(req.body[key].toLowerCase())){
+                res.render('./user/item/edit.ejs', {
+                    pokemon: userDB.Users[req.params.uid - 1].findPOKEMON(req.params.pokeid),
+                    user: userDB.Users[req.params.uid - 1],
+                    id: req.params.uid,
+                    body: req.body,
+                    msg: `Need to input valid POKEMON type. Valid Types: ${userDB.PokemonTypes}`
+                })
             }
         }
-        if(!req.body[key]){
-            res.render('./user/item/edit.ejs', {
-                pokemon: userDB.Users[req.params.uid - 1].findPOKEMON(req.params.pokeid),
-                user: userDB.Users[req.params.uid - 1],
-                id: req.params.uid,
-                body: req.body,
-                msg: 'Need to input all fields'
-            })
+        // replace not filled values
+        if(req.body[key]){
+            if(key === 'name'){
+                chosenPokemon.NAME = req.body[key]
+            } if(key == 'type1'){
+                console.log(req.body)
+                chosenPokemon.TYPE[0] = req.body[key]
+            } if(key === 'type2'){
+                chosenPokemon.TYPE[1] = req.body[key]
+            } if(key === 'hp'){
+                chosenPokemon.STATS.HP = req.body[key]
+            } if(key === 'atk'){
+                chosenPokemon.STATS.ATK = req.body[key]
+            } if(key === 'def'){
+                chosenPokemon.STATS.DEF = req.body[key]
+            } if(key === 'spatk'){
+                chosenPokemon.STATS.SPATK = req.body[key]
+            } if(key === 'spdef'){
+                chosenPokemon.STATS.SPDEF = req.body[key]
+            } if(key === 'speed'){
+                chosenPokemon.STATS.SPEED = req.body[key]
+            }
         }
     })
-    // update user pokemon
-    res.redirect(`/usr/${req.params.uid}/${req.params.pokeid}`)
+
+    // update Pokemon
+    userDB.Users[req.params.uid - 1].updatePokemon(req.params.pokeid,chosenPokemon)
+
+    // redirect to show page
+    return res.redirect(`/usr/${req.params.uid}/${req.params.pokeid}`)
 })
 
 

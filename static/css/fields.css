@@ -68,7 +68,6 @@ input[type="number"]{
     margin-top:40px;
     padding:10px;
     font-family: 'FiraCode', monospace;
-    width:fit-content;
     align-self: center;
     column-span: all;
     border:5px solid var(--main-color4);

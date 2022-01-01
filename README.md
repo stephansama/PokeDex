@@ -2,6 +2,8 @@
 
 [Click Here](http://localhost:3000) to get started
 
+Currently only supports Google Chrome
+
 ### Screenshots
 ![Screenshot 1](./static/assets/screen1.png)
 ![Screenshot 2](./static/assets/screen2.png)

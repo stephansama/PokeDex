@@ -14,6 +14,7 @@ const USER_SQL = process.env.USER_SQL || ROOT + 'sql/user.sql'
 //= Module
 module.exports = {
     PokemonTypes: [
+        'undefined',
         'electric',
         'fighting',
         'psychic',
@@ -112,7 +113,20 @@ module.exports = {
 
             newPokemon.ID = old.ID
 
-            const statement = `UPDATE dex`
+            const statement = `
+            UPDATE dex
+            SET NAME=\'${newPokemon.NAME}\',
+            TYPE1=\'${newPokemon.TYPE[0]}\',
+            TYPE2=\'${newPokemon.TYPE[1]}\',
+            HP=${newPokemon.STATS.HP},
+            ATK=${newPokemon.STATS.ATK},
+            DEF=${newPokemon.STATS.DEF},
+            SPATK=${newPokemon.STATS.SPATK},
+            SPDEF=${newPokemon.STATS.SPDEF},
+            SPEED=${newPokemon.STATS.SPEED}
+            WHERE POKEID = ${pokemonID};`
+
+            console.log(statement)
 
             this.db.exec(statement)
             return true
@@ -131,7 +145,7 @@ module.exports = {
                 ${Pokemon.POKEID}, \'${Pokemon.NAME}\', \'${Pokemon.IMGURL}\',
                 \'${Pokemon.TYPE[0]}\', \'${Pokemon.TYPE[1]}\',
                 ${Pokemon.STATS.HP}, ${Pokemon.STATS.ATK}, ${Pokemon.STATS.DEF},
-                ${Pokemon.STATS.SPATK}, ${Pokemon.STATS.SPDEF}, ${Pokemon.STATS.SPEED})`
+                ${Pokemon.STATS.SPATK}, ${Pokemon.STATS.SPDEF}, ${Pokemon.STATS.SPEED});`
             console.log(query)
             this.db.exec(query)
         }
