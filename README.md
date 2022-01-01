@@ -1,8 +1,11 @@
-# PokeDex
+# PokéDex
 
 [Click Here](http://localhost:3000) to get started
 
 Currently only supports Google Chrome
+
+### Usage
+PokéDex is a simple web application that allows users to import from the first generation of pokemon. Once imported users can customise the pokémon to their liking
 
 ### Screenshots
 ![Screenshot 1](./static/assets/screen1.png)
@@ -38,4 +41,4 @@ Currently only supports Google Chrome
     - [Pokemon Font](https://www.dafont.com/pokemon.font)
 
 ### TO-DO:
-- 
+- Add ability to delete users from webpage
