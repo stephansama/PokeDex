@@ -8,12 +8,30 @@
     <%- include('../components/title.ejs')  %> 
     <div id="pokedex">
         <div id="subtitle">Logged Out...</div>
+        <div id="update">0</div>
     </div>
     <%- include('../components/footer.ejs')  %> 
 </body>
+<style>
+    #update {
+        margin-top:5vw;
+        align-self: center;
+        font-family: 'FiraCode',monospace;
+    }
+</style>
 <script>
+    const up = document.querySelector('#update')
+    setTimeout(function() {
+        up.innerText = '1'
+    },1000)
+    setTimeout(function() {
+        up.innerText = '2'
+    },2000)
+    setTimeout(function() {
+        up.innerText = '3'
+    },3000)
     setTimeout(function() {
         window.location.href = "/"
-    },2000)
+    },3500)
 </script>
 </html>

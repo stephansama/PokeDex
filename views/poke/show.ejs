@@ -24,7 +24,7 @@
                         <td>TYPE 1</td>
                         <td class="<%=data[id].type[0]%>"></td>
                         <td>TYPE 2</td>
-                        <td class="<%=data[id].type[1]%>"><%= data[id].type[1] === 'undefined' ? '----': ''%></td>
+                        <td class="<%=data[id].type[1]%>"><%= !data[id].type[1] ? '----': ''%></td>
                     </tr>
                 </table>
                 <!-- Chart.JS Chart -->
@@ -40,7 +40,7 @@
 <script>
     document.onkeydown = (k) =>{
         if(k.code === 'Backspace'){
-            window.location.href = '/usr/<%=id %>/dashboard'
+            window.location.href = '/poke/all'
         }
     }
 
