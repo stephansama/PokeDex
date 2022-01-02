@@ -1,6 +1,6 @@
 # PokéDex
 
-[Click Here](http://localhost:3000) to get started
+[Click Here](http://localhost:3000) to get started (Only a localhost link [MUST Launch from terminal!])
 
 Currently only supports Google Chrome
 
