@@ -2,9 +2,6 @@
 // 12/25/21
 // Graph Helper Functions
 //------------------------------------------
-
-const ctx = document.getElementById('pokechart').getContext('2d');
-
 const COLORS = ['#FF0000','#CC0000','#3B4CCA','#3d7dca','#FFDE00','#B3A125']
 
 function genNext(last){
@@ -22,13 +19,14 @@ function randomizeColors(Length) {
     return random
 }
 
-function createChart(argObj){
+function createChart(argObj, title='Pokémon Information', id='pokechart'){
+    const ctx = document.getElementById(id).getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: Object.keys(argObj),
             datasets: [{
-                label: 'Pokémon Information',
+                label: title,
                 data: Object.keys(argObj).map(key => argObj[key]),
                 backgroundColor: randomizeColors(argObj.length),
                 borderWidth: 0

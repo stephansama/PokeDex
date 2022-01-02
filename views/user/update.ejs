@@ -1,14 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('../components/header.ejs') %> 
-    <title>Document</title>
+    <%- include('../components/header.ejs') %>
+    <link rel="stylesheet" href="/static/css/show.css">
+    <script src="/static/js/chart.min.js"></script>
+    <title>PokéDex | <%=user.NAME %> info page</title>
+    <style>
+        #charts{
+            display:flex;
+            flex-flow:row nowrap;
+            width:100%;
+            justify-content:space-around;
+            margin: 2vw 0;
+        }
+        #chartcontainer {
+            width: 40%;
+        }
+
+        table{
+            font-size: .8em;
+        }
+        table tr td{
+            text-align:center;
+        }
+        table tr td:last-child{
+            width: fit-content;
+        }
+        #wrapper{
+            width:100%;
+            display:flex;
+            justify-content:center;
+        }
+    </style>
 </head>
 <body>
     <%- include('../components/title.ejs') %> 
     <div id="pokedex">
-        
+        <a href="/usr/<%=id %>/dashboard" id="link"><-</a>
+        <!-- UserNAME -->
+        <div id="subtitle"><%=user.NAME.toUpperCase() %> </div>
+        <!-- Pokemon Charts -->
+        <div id="charts">
+            <div id="chartcontainer">
+                <canvas id="pokechart"></canvas>
+            </div>
+            <div id="chartcontainer">
+                <canvas id="totalstats"></canvas>
+            </div>
+        </div>
+        <!-- Total Pokemon Information -->
+        <div id="wrapper">
+            <table>
+                <tr>
+                    <td>Total Pokemon in PokéDex</td>
+                    <td>Total Pokemon Deleted</td>
+                </tr>
+                <tr>
+                    <td class="totalpoke"></td>
+                    <td class="totaldeleted"></td>
+                </tr>
+            </table>
+        </div>
+        <!-- Add information concerning the users use patterns -->
     </div>
     <%- include('../components/footer.ejs') %> 
 </body>
+<!-- Create Local Variables -->
+<script>
+    let localTotalStats = {type:{},stats:{}}
+    let localTotalNumber = parseInt(`<%=pokemon.length%>`)
+    let localTotalDeleted = parseInt(`<%=pokemon[pokemon.length-1].ID - pokemon.length%>`)
+    document.querySelector('.totalpoke').innerText = localTotalNumber
+    document.querySelector('.totaldeleted').innerText = localTotalDeleted
+</script>
+<!-- Initialise Types -->
+<% types.forEach(type=>{%>
+    <script>
+        localTotalStats.type[`<%=type%>`] = 0
+    </script>
+<% })%>
+<!-- Initialise Stats -->
+<% Object.keys(pokemon[0].STATS).forEach(key=>{ %>
+    <script>
+        localTotalStats.stats[`<%= key %>`] = 0
+    </script>
+<% }) %>
+<!-- Load Pokemon Data -->
+<% pokemon.forEach(poke=>{ %>
+    <% types.forEach(key=>{ %>
+        <% if((poke.TYPE[0].toLowerCase() || poke.TYPE[1].toLowerCase()) === key){ %>
+            <script>
+                localTotalStats.type[`<%= key %>`] += 1
+            </script>
+        <% } %>
+    <% }) %>
+    <% Object.keys(poke.STATS).forEach(key=>{ %>
+        <script>
+            localTotalStats.stats[`<%= key %>`] += parseInt(`<%=poke.STATS[key]%>`)
+        </script>
+    <% }) %>
+<% })%>
+<script src="/static/js/charts.js"></script>
+<script>
+    document.onkeydown = (k) =>{
+        if(k.code === 'Backspace')
+            window.location.href = '/usr/<%=id %>/dashboard'
+    }
+    createChart(localTotalStats.type, 'Total TYPES');
+    createChart(localTotalStats.stats, 'Total STATS', 'totalstats');
+</script>
 </html>

@@ -95,6 +95,8 @@ userRouter.get('/:uid/dashboard', authenticated, (req, res) => {
 userRouter.get('/:uid/edit', authenticated, (req, res) => {
     res.render('./user/update.ejs', {
         user: userDB.Users[req.params.uid - 1],
+        pokemon: userDB.Users[req.params.uid - 1].POKEMON,
+        types: userDB.PokemonTypes,
         id: req.params.uid
     })
 })

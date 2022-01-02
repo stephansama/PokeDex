@@ -10,7 +10,7 @@
     <%- include('../../components/title.ejs') %> 
     <div id="pokedex">
         <div id="showtitle">
-            <%- include('../../components/backbutton.ejs') %> 
+            <a id="link" href='dashboard/'><-</a>
             <div id="subtitle">#<%=pokemon.POKEID%> <%= pokemon.NAME %></div>
             <a id="link" href="/usr/<%=id %>/<%=pokemon.POKEID %>/edit">EDIT</a>
         </div>
