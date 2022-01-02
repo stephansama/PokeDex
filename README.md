@@ -8,10 +8,15 @@ Currently only supports Google Chrome
 PokéDex is a simple web application that allows users to import from the first generation of pokemon. Once imported users can customise the pokémon to their liking
 
 ### Screenshots
+Show all first generation pokemon
 ![Screenshot 5](./static/assets/screen5.png)
+User Dashboard
 ![Screenshot 1](./static/assets/screen1.png)
+Individual pokemon show page
 ![Screenshot 2](./static/assets/screen2.png)
-![Screenshot 3](./static/assets/screen3.png)
+Pokemon edit page
+![Screenshot 3](./static/assets/screen3.png "Screenshot 3")
+User information page
 ![Screenshot 4](./static/assets/screen4.png)
 ### VALID KEYS
 - User Authenticated Pages
