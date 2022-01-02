@@ -11,6 +11,7 @@ PokéDex is a simple web application that allows users to import from the first 
 ![Screenshot 1](./static/assets/screen1.png)
 ![Screenshot 2](./static/assets/screen2.png)
 ![Screenshot 3](./static/assets/screen3.png)
+![Screenshot 4](./static/assets/screen4.png)
 ### VALID KEYS
 - User Authenticated Pages
     - Backspace - go back a page
